@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: train-travel
+  description: An example Train Travel mock API surfaced through Backstage.
+  
+spec:
+  type: service
+  owner: team@wiremock.io
+  lifecycle: experimental
+  providesApis:
+    - train-travel-api

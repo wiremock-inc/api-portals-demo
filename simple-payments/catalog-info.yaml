@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: simple-payments
+  description: A simple payments API example surfaced through Backstage.
+  
+spec:
+  type: service
+  owner: team@wiremock.io
+  lifecycle: experimental
+  providesApis:
+    - simple-payments-api

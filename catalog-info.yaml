@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: wiremock-backstage-demos
+spec:
+  type: url
+  targets:
+    - ./simple-payments/catalog-info.yaml
+    - ./simple-payments/api.yaml
+    - ./train-travel/catalog-info.yaml
+    - ./train-travel/api.yaml
