@@ -6,35 +6,37 @@ servers:
 - url: https://simple-payments.wiremockapi.cloud
 paths:
   /customers/{id}:
-    parameters:
+    get:
+      description: Gets a customer by ID.
+      operationId: getCustomerById
+      parameters:
       - name: id
         in: path
         required: true
+        style: simple
+        explode: false
         schema:
           type: integer
       - name: detail
         in: query
         required: true
+        style: form
+        explode: true
         schema:
           type: string
           enum:
-            - full
-            - summary
-
-    get:
-      operationId: getCustomerById
-      description: Gets a customer by ID.
-
+          - full
+          - summary
       responses:
-        '200':
+        "200":
           description: Customer detail response
           content:
             application/json:
               schema:
                 required:
-                  - id
-                  - firstName
-                  - lastName
+                - firstName
+                - id
+                - lastName
                 properties:
                   id:
                     type: string
@@ -43,14 +45,93 @@ paths:
                     type: string
                   lastName:
                     type: string
-
               examples:
                 example-one:
-                  x-parameter-values:
-                    id: 5931ed73-dcd4-4e24-ad24-975ac288fa7f
-                    detail: full
                   summary: First customer example
                   value:
                     id: 5931ed73-dcd4-4e24-ad24-975ac288fa7f
                     firstName: Tom
                     lastName: Akehurst
+                  x-parameter-values:
+                    id: 5931ed73-dcd4-4e24-ad24-975ac288fa7f
+                    detail: full
+  /charges:
+    post:
+      description: Post charges.
+      operationId: postCharges
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - amount
+              - currency
+              - customerId
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  format: int32
+                  example: 350
+                currency:
+                  type: string
+                  example: gbp
+                customerId:
+                  type: string
+                  example: 5931ed73-dcd4-4e24-ad24-975ac288fa7f
+            examples:
+              Create charge:
+                value: |-
+                  {
+                      "amount": 350,
+                      "currency": "gbp",
+                      "customerId": "5931ed73-dcd4-4e24-ad24-975ac288fa7f"
+                  }
+        required: true
+      responses:
+        "200":
+          description: Create charge
+          content:
+            application/json:
+              schema:
+                required:
+                - amount
+                - created
+                - currency
+                - customer
+                - id
+                - status
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 9b6b418a-0b59-486c-a4a3-cd0f1cdbf0b3
+                  amount:
+                    type: integer
+                    format: int32
+                    example: 350
+                  currency:
+                    type: string
+                    example: gbp
+                  customer:
+                    type: string
+                    example: /customers/5931ed73-dcd4-4e24-ad24-975ac288fa7f
+                  created:
+                    type: string
+                    example: 2023-09-03T10:31:22Z
+                  status:
+                    type: string
+                    example: pending
+                x-wiremock-hash: 366003811
+              examples:
+                Create charge:
+                  value: |-
+                    {
+                        "id": "9b6b418a-0b59-486c-a4a3-cd0f1cdbf0b3",
+                        "amount": 350,
+                        "currency": "gbp",
+                        "customer": "/customers/5931ed73-dcd4-4e24-ad24-975ac288fa7f",
+                        "created": "2023-09-03T10:31:22Z",
+                        "status": "pending"
+                    }
