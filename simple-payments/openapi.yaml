@@ -6,37 +6,35 @@ servers:
 - url: https://simple-payments.wiremockapi.cloud
 paths:
   /customers/{customerId}:
-    get:
-      description: Gets a customer by ID.
-      operationId: getCustomerById
-      parameters:
+    parameters:
       - name: customerId
         in: path
         required: true
-        style: simple
-        explode: false
         schema:
-          type: integer
+          type: string
+          format: uuid
       - name: detail
         in: query
         required: true
-        style: form
-        explode: true
         schema:
           type: string
           enum:
-          - full
-          - summary
+            - full
+            - summary
+    get:
+      operationId: getCustomerById
+      description: Gets a customer by ID.
+
       responses:
-        "200":
+        '200':
           description: Customer detail response
           content:
             application/json:
               schema:
                 required:
-                - firstName
-                - id
-                - lastName
+                  - id
+                  - firstName
+                  - lastName
                 properties:
                   id:
                     type: string
@@ -45,16 +43,73 @@ paths:
                     type: string
                   lastName:
                     type: string
+
               examples:
                 example-one:
+                  x-parameter-values:
+                    id: 5931ed73-dcd4-4e24-ad24-975ac288fa7f
+                    detail: full
                   summary: First customer example
                   value:
                     id: 5931ed73-dcd4-4e24-ad24-975ac288fa7f
                     firstName: Tom
                     lastName: Akehurst
-                  x-parameter-values:
-                    id: 5931ed73-dcd4-4e24-ad24-975ac288fa7f
-                    detail: full
+    put:
+      description: Put customers by customerId.
+      operationId: putCustomersByCustomerId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - firstName
+              - lastName
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  example: Marc
+                lastName:
+                  type: string
+                  example: Treutel
+            examples:
+              Update customer:
+                value: |-
+                  {
+                    "firstName" : "Brenda",
+                    "lastName" : "Schmitt"
+                  }
+        required: true
+      responses:
+        "200":
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                required:
+                - firstName
+                - id
+                - lastName
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1c777b16-2a24-47c1-8b24-a38cf96c66e0
+                  firstName:
+                    type: string
+                    example: Tom
+                  lastName:
+                    type: string
+                    example: Akehurst
+                x-wiremock-hash: -1986720674
+              examples:
+                Update customer:
+                  value: |
+                    {
+                      "id": "1c777b16-2a24-47c1-8b24-a38cf96c66e0",
+                      "firstName": "Tom",
+                      "lastName": "Akehurst"
+                    }
   /charges:
     post:
       description: Create a new charge.
@@ -194,70 +249,4 @@ paths:
                         "customer": "/customers/5931ed73-dcd4-4e24-ad24-975ac288fa7f",
                         "created": "2023-09-03T10:31:22Z",
                         "status": "pending"
-                    }
-  /customers/{customerId}:
-    put:
-      description: Put customers by customerId.
-      operationId: putCustomersByCustomerId
-      parameters:
-      - name: customerId
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uuid
-      requestBody:
-        content:
-          application/json:
-            schema:
-              required:
-              - firstName
-              - lastName
-              type: object
-              properties:
-                firstName:
-                  type: string
-                  example: Marc
-                lastName:
-                  type: string
-                  example: Treutel
-            examples:
-              Update customer:
-                value: |-
-                  {
-                    "firstName" : "Brenda",
-                    "lastName" : "Schmitt"
-                  }
-        required: true
-      responses:
-        "200":
-          description: Update customer
-          content:
-            application/json:
-              schema:
-                required:
-                - firstName
-                - id
-                - lastName
-                type: object
-                properties:
-                  id:
-                    type: string
-                    example: 1c777b16-2a24-47c1-8b24-a38cf96c66e0
-                  firstName:
-                    type: string
-                    example: Tom
-                  lastName:
-                    type: string
-                    example: Akehurst
-                x-wiremock-hash: -1986720674
-              examples:
-                Update customer:
-                  value: |
-                    {
-                      "id": "1c777b16-2a24-47c1-8b24-a38cf96c66e0",
-                      "firstName": "Tom",
-                      "lastName": "Akehurst"
                     }
