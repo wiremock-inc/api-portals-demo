@@ -5,12 +5,12 @@ info:
 servers:
 - url: https://simple-payments.wiremockapi.cloud
 paths:
-  /customers/{id}:
+  /customers/{customerId}:
     get:
       description: Gets a customer by ID.
       operationId: getCustomerById
       parameters:
-      - name: id
+      - name: customerId
         in: path
         required: true
         style: simple
