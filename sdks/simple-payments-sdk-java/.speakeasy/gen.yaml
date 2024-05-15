@@ -35,3 +35,4 @@ java:
   outputModelSuffix: output
   projectName: openapi
   templateVersion: v2
+  responseFormat: envelope
