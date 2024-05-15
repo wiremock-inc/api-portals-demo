@@ -1,0 +1,9 @@
+workflowVersion: 1.0.0
+sources:
+    simple-payments-api:
+        inputs:
+            - location: ../../simple-payments/openapi.yaml
+targets:
+    my-first-target:
+        target: typescript
+        source: simple-payments-api
