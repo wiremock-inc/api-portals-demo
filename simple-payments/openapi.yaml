@@ -203,6 +203,8 @@ paths:
       - name: customerId
         in: path
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
           format: uuid
@@ -211,17 +213,22 @@ paths:
           application/json:
             schema:
               required:
-              - name
+              - firstName
+              - lastName
               type: object
               properties:
-                name:
+                firstName:
                   type: string
-                  example: Phebe Lehner
+                  example: Marc
+                lastName:
+                  type: string
+                  example: Treutel
             examples:
               Update customer:
                 value: |-
                   {
-                    "name" : "Mickey Stoltenberg"
+                    "firstName" : "Brenda",
+                    "lastName" : "Schmitt"
                   }
         required: true
       responses:
@@ -231,21 +238,26 @@ paths:
             application/json:
               schema:
                 required:
+                - firstName
                 - id
-                - name
+                - lastName
                 type: object
                 properties:
                   id:
                     type: string
                     example: 1c777b16-2a24-47c1-8b24-a38cf96c66e0
-                  name:
+                  firstName:
                     type: string
                     example: Tom
-                x-wiremock-hash: -1504792622
+                  lastName:
+                    type: string
+                    example: Akehurst
+                x-wiremock-hash: -1986720674
               examples:
                 Update customer:
                   value: |
                     {
                       "id": "1c777b16-2a24-47c1-8b24-a38cf96c66e0",
-                      "name": "Tom"
+                      "firstName": "Tom",
+                      "lastName": "Akehurst"
                     }
