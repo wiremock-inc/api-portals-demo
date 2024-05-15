@@ -143,13 +143,15 @@ paths:
       - name: chargeId
         in: path
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
           format: uuid
         example: 1c777b16-2a24-47c1-8b24-a38cf96c66e0
       responses:
         "200":
-          description: Get charge by ID
+          description: Get charges by chargeId. - Get charge by ID
           content:
             application/json:
               schema:
@@ -192,4 +194,58 @@ paths:
                         "customer": "/customers/5931ed73-dcd4-4e24-ad24-975ac288fa7f",
                         "created": "2023-09-03T10:31:22Z",
                         "status": "pending"
+                    }
+  /customers/{customerId}:
+    put:
+      description: Put customers by customerId.
+      operationId: putCustomersByCustomerId
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Phebe Lehner
+            examples:
+              Update customer:
+                value: |-
+                  {
+                    "name" : "Mickey Stoltenberg"
+                  }
+        required: true
+      responses:
+        "200":
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                required:
+                - id
+                - name
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1c777b16-2a24-47c1-8b24-a38cf96c66e0
+                  name:
+                    type: string
+                    example: Tom
+                x-wiremock-hash: -1504792622
+              examples:
+                Update customer:
+                  value: |
+                    {
+                      "id": "1c777b16-2a24-47c1-8b24-a38cf96c66e0",
+                      "name": "Tom"
                     }
