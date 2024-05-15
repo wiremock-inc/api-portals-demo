@@ -146,7 +146,7 @@ paths:
         schema:
           type: string
           format: uuid
-        example: 2f0b544f-e36b-483d-91ef-390dbdaf2770
+        example: 1c777b16-2a24-47c1-8b24-a38cf96c66e0
       responses:
         "200":
           description: Get charge by ID
