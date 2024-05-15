@@ -25,7 +25,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'io.wiremock.demos.simple_payments_sdk:openapi:0.0.1'
+implementation 'io.wiremock.demos.simple_payments_sdk:openapi:0.0.2'
 ```
 
 Maven:
@@ -33,7 +33,7 @@ Maven:
 <dependency>
     <groupId>io.wiremock.demos.simple_payments_sdk</groupId>
     <artifactId>openapi</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 
@@ -79,7 +79,7 @@ public class Application {
                 .build();
 
             GetCustomerByIdResponse res = sdk.getCustomerById()
-                .id(531540L)
+                .customerId("881b07a4-f7e9-4d74-b643-05479128a5b6")
                 .detail(Detail.SUMMARY)
                 .call();
 
@@ -104,7 +104,9 @@ public class Application {
 ### [SimplePaymentsSDK](docs/sdks/simplepaymentssdk/README.md)
 
 * [getCustomerById](docs/sdks/simplepaymentssdk/README.md#getcustomerbyid) - Gets a customer by ID.
+* [putCustomersByCustomerId](docs/sdks/simplepaymentssdk/README.md#putcustomersbycustomerid) - Put customers by customerId.
 * [postCharges](docs/sdks/simplepaymentssdk/README.md#postcharges) - Create a new charge.
+* [getChargesByChargeId](docs/sdks/simplepaymentssdk/README.md#getchargesbychargeid) - Get charges by chargeId.
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -140,7 +142,7 @@ public class Application {
                 .build();
 
             GetCustomerByIdResponse res = sdk.getCustomerById()
-                .id(531540L)
+                .customerId("881b07a4-f7e9-4d74-b643-05479128a5b6")
                 .detail(Detail.SUMMARY)
                 .call();
 
@@ -195,7 +197,7 @@ public class Application {
                 .build();
 
             GetCustomerByIdResponse res = sdk.getCustomerById()
-                .id(531540L)
+                .customerId("881b07a4-f7e9-4d74-b643-05479128a5b6")
                 .detail(Detail.SUMMARY)
                 .call();
 
@@ -240,7 +242,7 @@ public class Application {
                 .build();
 
             GetCustomerByIdResponse res = sdk.getCustomerById()
-                .id(531540L)
+                .customerId("881b07a4-f7e9-4d74-b643-05479128a5b6")
                 .detail(Detail.SUMMARY)
                 .call();
 

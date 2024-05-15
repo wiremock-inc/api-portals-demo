@@ -17,32 +17,40 @@ import java.util.stream.Stream;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class GetCustomerByIdRequestBuilder {
+public class PutCustomersByCustomerIdRequestBuilder {
 
     private String customerId;
-    private Detail detail;
-    private final SDKMethodInterfaces.MethodCallGetCustomerById sdk;
+    private QueryParamDetail detail;
+    private PutCustomersByCustomerIdRequestBody requestBody;
+    private final SDKMethodInterfaces.MethodCallPutCustomersByCustomerId sdk;
 
-    public GetCustomerByIdRequestBuilder(SDKMethodInterfaces.MethodCallGetCustomerById sdk) {
+    public PutCustomersByCustomerIdRequestBuilder(SDKMethodInterfaces.MethodCallPutCustomersByCustomerId sdk) {
         this.sdk = sdk;
     }
 
-    public GetCustomerByIdRequestBuilder customerId(String customerId) {
+    public PutCustomersByCustomerIdRequestBuilder customerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
         return this;
     }
 
-    public GetCustomerByIdRequestBuilder detail(Detail detail) {
+    public PutCustomersByCustomerIdRequestBuilder detail(QueryParamDetail detail) {
         Utils.checkNotNull(detail, "detail");
         this.detail = detail;
         return this;
     }
 
-    public GetCustomerByIdResponse call() throws Exception {
+    public PutCustomersByCustomerIdRequestBuilder requestBody(PutCustomersByCustomerIdRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
 
-        return sdk.getCustomerById(
+    public PutCustomersByCustomerIdResponse call() throws Exception {
+
+        return sdk.putCustomersByCustomerId(
             customerId,
-            detail);
+            detail,
+            requestBody);
     }
 }

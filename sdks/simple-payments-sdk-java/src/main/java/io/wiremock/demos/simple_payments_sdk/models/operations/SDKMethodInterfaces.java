@@ -16,14 +16,28 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetCustomerById {
         io.wiremock.demos.simple_payments_sdk.models.operations.GetCustomerByIdResponse getCustomerById(
-            long id,
+            String customerId,
             io.wiremock.demos.simple_payments_sdk.models.operations.Detail detail) throws Exception;
+    }
+
+
+    public interface MethodCallPutCustomersByCustomerId {
+        io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdResponse putCustomersByCustomerId(
+            String customerId,
+            io.wiremock.demos.simple_payments_sdk.models.operations.QueryParamDetail detail,
+            io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdRequestBody requestBody) throws Exception;
     }
 
 
     public interface MethodCallPostCharges {
         io.wiremock.demos.simple_payments_sdk.models.operations.PostChargesResponse postCharges(
             io.wiremock.demos.simple_payments_sdk.models.operations.PostChargesRequestBody request) throws Exception;
+    }
+
+
+    public interface MethodCallGetChargesByChargeId {
+        io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdResponse getChargesByChargeId(
+            String chargeId) throws Exception;
     }
 
 }

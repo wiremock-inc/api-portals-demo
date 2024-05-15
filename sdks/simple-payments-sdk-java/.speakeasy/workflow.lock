@@ -1,8 +1,9 @@
-speakeasyVersion: 1.285.6
+speakeasyVersion: 1.291.0
 sources: {}
 targets: {}
 workflow:
     workflowVersion: 1.0.0
+    speakeasyVersion: latest
     sources:
         simple-payments-api:
             inputs:

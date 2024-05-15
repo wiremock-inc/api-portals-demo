@@ -1,16 +1,17 @@
 lockVersion: 2.0.0
 id: 93d932a2-03f5-4430-9ef4-f6ff93b7b807
 management:
-  docChecksum: 2b460041bff6d1a5c4dc78e023d90fb2
+  docChecksum: 2249910a5f82cd7fd8ff30bd680f52e0
   docVersion: 1.0.0
-  speakeasyVersion: 1.285.6
-  generationVersion: 2.326.3
-  releaseVersion: 0.0.1
-  configChecksum: e7df377e6add0364353cf3adefdb66e3
+  speakeasyVersion: 1.291.0
+  generationVersion: 2.332.4
+  releaseVersion: 0.0.2
+  configChecksum: 0e81bd31eb9eac28d5dfa27b8d154550
+  repoURL: https://github.com/wiremock-inc/api-portals-demo.git
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.19.5
+    core: 3.19.7
     flattening: 2.81.1
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
@@ -20,7 +21,9 @@ generatedFiles:
   - src/main/java/io/wiremock/demos/simple_payments_sdk/models/components/Security.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/SDKConfiguration.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/GetCustomerByIdRequestBuilder.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/PutCustomersByCustomerIdRequestBuilder.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/PostChargesRequestBuilder.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/GetChargesByChargeIdRequestBuilder.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/SDKMethodInterfaces.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/SimplePaymentsSDK.java
   - .gitattributes
@@ -67,15 +70,31 @@ generatedFiles:
   - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/GetCustomerByIdRequest.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/GetCustomerByIdResponseBody.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/GetCustomerByIdResponse.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/QueryParamDetail.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/PutCustomersByCustomerIdRequestBody.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/PutCustomersByCustomerIdRequest.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/PutCustomersByCustomerIdResponseBody.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/PutCustomersByCustomerIdResponse.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/PostChargesRequestBody.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/PostChargesResponseBody.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/PostChargesResponse.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/GetChargesByChargeIdRequest.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/GetChargesByChargeIdResponseBody.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/models/operations/GetChargesByChargeIdResponse.java
   - docs/models/operations/Detail.md
   - docs/models/operations/GetCustomerByIdRequest.md
   - docs/models/operations/GetCustomerByIdResponseBody.md
   - docs/models/operations/GetCustomerByIdResponse.md
+  - docs/models/operations/QueryParamDetail.md
+  - docs/models/operations/PutCustomersByCustomerIdRequestBody.md
+  - docs/models/operations/PutCustomersByCustomerIdRequest.md
+  - docs/models/operations/PutCustomersByCustomerIdResponseBody.md
+  - docs/models/operations/PutCustomersByCustomerIdResponse.md
   - docs/models/operations/PostChargesRequestBody.md
   - docs/models/operations/PostChargesResponseBody.md
   - docs/models/operations/PostChargesResponse.md
+  - docs/models/operations/GetChargesByChargeIdRequest.md
+  - docs/models/operations/GetChargesByChargeIdResponseBody.md
+  - docs/models/operations/GetChargesByChargeIdResponse.md
   - docs/sdks/simplepaymentssdk/README.md
   - USAGE.md

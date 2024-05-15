@@ -16,22 +16,28 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 
-public class GetCustomerByIdRequest {
+public class PutCustomersByCustomerIdRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=customerId")
     private String customerId;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=detail")
-    private Detail detail;
+    private QueryParamDetail detail;
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private PutCustomersByCustomerIdRequestBody requestBody;
 
     @JsonCreator
-    public GetCustomerByIdRequest(
+    public PutCustomersByCustomerIdRequest(
             String customerId,
-            Detail detail) {
+            QueryParamDetail detail,
+            PutCustomersByCustomerIdRequestBody requestBody) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(detail, "detail");
+        Utils.checkNotNull(requestBody, "requestBody");
         this.customerId = customerId;
         this.detail = detail;
+        this.requestBody = requestBody;
     }
 
     @JsonIgnore
@@ -40,23 +46,34 @@ public class GetCustomerByIdRequest {
     }
 
     @JsonIgnore
-    public Detail detail() {
+    public QueryParamDetail detail() {
         return detail;
+    }
+
+    @JsonIgnore
+    public PutCustomersByCustomerIdRequestBody requestBody() {
+        return requestBody;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public GetCustomerByIdRequest withCustomerId(String customerId) {
+    public PutCustomersByCustomerIdRequest withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
         return this;
     }
 
-    public GetCustomerByIdRequest withDetail(Detail detail) {
+    public PutCustomersByCustomerIdRequest withDetail(QueryParamDetail detail) {
         Utils.checkNotNull(detail, "detail");
         this.detail = detail;
+        return this;
+    }
+
+    public PutCustomersByCustomerIdRequest withRequestBody(PutCustomersByCustomerIdRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
     
@@ -68,31 +85,36 @@ public class GetCustomerByIdRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GetCustomerByIdRequest other = (GetCustomerByIdRequest) o;
+        PutCustomersByCustomerIdRequest other = (PutCustomersByCustomerIdRequest) o;
         return 
             java.util.Objects.deepEquals(this.customerId, other.customerId) &&
-            java.util.Objects.deepEquals(this.detail, other.detail);
+            java.util.Objects.deepEquals(this.detail, other.detail) &&
+            java.util.Objects.deepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
             customerId,
-            detail);
+            detail,
+            requestBody);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(GetCustomerByIdRequest.class,
+        return Utils.toString(PutCustomersByCustomerIdRequest.class,
                 "customerId", customerId,
-                "detail", detail);
+                "detail", detail,
+                "requestBody", requestBody);
     }
     
     public final static class Builder {
  
         private String customerId;
  
-        private Detail detail;  
+        private QueryParamDetail detail;
+ 
+        private PutCustomersByCustomerIdRequestBody requestBody;  
         
         private Builder() {
           // force use of static builder() method
@@ -104,16 +126,23 @@ public class GetCustomerByIdRequest {
             return this;
         }
 
-        public Builder detail(Detail detail) {
+        public Builder detail(QueryParamDetail detail) {
             Utils.checkNotNull(detail, "detail");
             this.detail = detail;
             return this;
         }
+
+        public Builder requestBody(PutCustomersByCustomerIdRequestBody requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
+            return this;
+        }
         
-        public GetCustomerByIdRequest build() {
-            return new GetCustomerByIdRequest(
+        public PutCustomersByCustomerIdRequest build() {
+            return new PutCustomersByCustomerIdRequest(
                 customerId,
-                detail);
+                detail,
+                requestBody);
         }
     }
 }

@@ -33,7 +33,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class SimplePaymentsSDK implements
             MethodCallGetCustomerById,
-            MethodCallPostCharges {
+            MethodCallPutCustomersByCustomerId,
+            MethodCallPostCharges,
+            MethodCallGetChargesByChargeId {
 
 
     /**
@@ -152,18 +154,18 @@ public class SimplePaymentsSDK implements
 
     /**
      * Gets a customer by ID.
-     * @param id
+     * @param customerId
      * @param detail
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public io.wiremock.demos.simple_payments_sdk.models.operations.GetCustomerByIdResponse getCustomerById(
-            long id,
+            String customerId,
             io.wiremock.demos.simple_payments_sdk.models.operations.Detail detail) throws Exception {
         io.wiremock.demos.simple_payments_sdk.models.operations.GetCustomerByIdRequest request =
             io.wiremock.demos.simple_payments_sdk.models.operations.GetCustomerByIdRequest
                 .builder()
-                .id(id)
+                .customerId(customerId)
                 .detail(detail)
                 .build();
         
@@ -171,7 +173,7 @@ public class SimplePaymentsSDK implements
         String _url = Utils.generateURL(
                 io.wiremock.demos.simple_payments_sdk.models.operations.GetCustomerByIdRequest.class,
                 _baseUrl,
-                "/customers/{id}",
+                "/customers/{customerId}",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
@@ -230,6 +232,130 @@ public class SimplePaymentsSDK implements
                 io.wiremock.demos.simple_payments_sdk.models.operations.GetCustomerByIdResponseBody _out = _mapper.readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.wiremock.demos.simple_payments_sdk.models.operations.GetCustomerByIdResponseBody>() {});
+                _res.withObject(java.util.Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.toByteArrayAndClose(_httpRes.body()));
+    }
+
+    /**
+     * Put customers by customerId.
+     * @return The call builder
+     */
+    public io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdRequestBuilder putCustomersByCustomerId() {
+        return new io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdRequestBuilder(this);
+    }
+
+    /**
+     * Put customers by customerId.
+     * @param customerId
+     * @param detail
+     * @param requestBody
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdResponse putCustomersByCustomerId(
+            String customerId,
+            io.wiremock.demos.simple_payments_sdk.models.operations.QueryParamDetail detail,
+            io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdRequestBody requestBody) throws Exception {
+        io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdRequest request =
+            io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdRequest
+                .builder()
+                .customerId(customerId)
+                .detail(detail)
+                .requestBody(requestBody)
+                .build();
+        
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdRequest.class,
+                _baseUrl,
+                "/customers/{customerId}",
+                request, null);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "PUT");
+        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
+            new TypeReference<java.lang.Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, "requestBody", "json", false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdRequest.class,
+                request, 
+                null));
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl("putCustomersByCustomerId", sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl("putCustomersByCustomerId", sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl("putCustomersByCustomerId", sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(new AfterErrorContextImpl("putCustomersByCustomerId", sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdResponse.Builder _resBuilder = 
+            io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdResponseBody _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdResponseBody>() {});
                 _res.withObject(java.util.Optional.ofNullable(_out));
                 return _res;
             } else {
@@ -335,6 +461,111 @@ public class SimplePaymentsSDK implements
                 io.wiremock.demos.simple_payments_sdk.models.operations.PostChargesResponseBody _out = _mapper.readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.wiremock.demos.simple_payments_sdk.models.operations.PostChargesResponseBody>() {});
+                _res.withObject(java.util.Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.toByteArrayAndClose(_httpRes.body()));
+    }
+
+    /**
+     * Get charges by chargeId.
+     * @return The call builder
+     */
+    public io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdRequestBuilder getChargesByChargeId() {
+        return new io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdRequestBuilder(this);
+    }
+
+    /**
+     * Get charges by chargeId.
+     * @param chargeId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdResponse getChargesByChargeId(
+            String chargeId) throws Exception {
+        io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdRequest request =
+            io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdRequest
+                .builder()
+                .chargeId(chargeId)
+                .build();
+        
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdRequest.class,
+                _baseUrl,
+                "/charges/{chargeId}",
+                request, null);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl("getChargesByChargeId", sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl("getChargesByChargeId", sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl("getChargesByChargeId", sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(new AfterErrorContextImpl("getChargesByChargeId", sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdResponse.Builder _resBuilder = 
+            io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdResponseBody _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdResponseBody>() {});
                 _res.withObject(java.util.Optional.ofNullable(_out));
                 return _res;
             } else {

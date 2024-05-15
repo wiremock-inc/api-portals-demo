@@ -21,7 +21,7 @@ public class Application {
                 .build();
 
             GetCustomerByIdResponse res = sdk.getCustomerById()
-                .id(531540L)
+                .customerId("881b07a4-f7e9-4d74-b643-05479128a5b6")
                 .detail(Detail.SUMMARY)
                 .call();
 
