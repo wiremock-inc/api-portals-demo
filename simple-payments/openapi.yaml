@@ -57,7 +57,7 @@ paths:
                     detail: full
   /charges:
     post:
-      description: Post charges.
+      description: Create a new charge.
       operationId: postCharges
       parameters: []
       requestBody:
