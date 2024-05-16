@@ -16,13 +16,29 @@ on:
   # schedule:
   #   - cron: 0 0 * * *
 jobs:
-  generate:
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
-    with:
-      force: ${{ github.event.inputs.force }}
-      mode: direct
-      speakeasy_version: latest
-      working_directory: sdks/simple-payments-sdk-java
-    secrets:
-      github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+  generate-sdks:
+    name: Generate SDKs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tune GitHub-hosted runner network
+        uses: smorimoto/tune-github-hosted-runner-network@v1
+      - id: run-workflow
+        name: Run Generation Workflow
+        uses: speakeasy-api/sdk-generation-action@v15
+        with:
+          force: ${{ github.event.inputs.force }}
+          mode: direct
+          speakeasy_version: latest
+          working_directory: sdks/simple-payments-sdk-java
+          github_access_token: ${{ secrets.github_access_token }}
+          speakeasy_api_key: ${{ secrets.speakeasy_api_key }}
+  # generate:
+  #   uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
+  #   with:
+  #     force: ${{ github.event.inputs.force }}
+  #     mode: direct
+  #     speakeasy_version: latest
+  #     working_directory: sdks/simple-payments-sdk-java
+  #   secrets:
+  #     github_access_token: ${{ secrets.GITHUB_TOKEN }}
+  #     speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
