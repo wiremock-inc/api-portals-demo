@@ -53,7 +53,7 @@ paths:
                     firstName: Tom
                     lastName: Akehurst
     put:
-      description: Updates a customer by customerId.
+      description: Updates customers by customerId.
       operationId: putCustomersByCustomerId
       requestBody:
         content:
