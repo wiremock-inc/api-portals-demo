@@ -30,7 +30,7 @@ paths:
           - summary
       responses:
         "200":
-          description: Customer detail response
+          description: Simple demo payments API stub 2
           content:
             application/json:
               schema:
@@ -38,6 +38,7 @@ paths:
                 - firstName
                 - id
                 - lastName
+                type: object
                 properties:
                   id:
                     type: string
@@ -46,6 +47,9 @@ paths:
                     type: string
                   lastName:
                     type: string
+                  email:
+                    type: string
+                    example: tom@wiremock.org
               examples:
                 example-one:
                   summary: First customer example
@@ -56,6 +60,13 @@ paths:
                   x-parameter-values:
                     id: 5931ed73-dcd4-4e24-ad24-975ac288fa7f
                     detail: full
+                Simple demo payments API stub 2:
+                  value: |-
+                    {
+                        "id": "1c777b16-2a24-47c1-8b24-a38cf96c66e0",
+                        "firstName": "Tom",
+                        "lastName": "Akehurst"
+                    }
     put:
       description: Updates customers by customerId.
       operationId: putCustomersByCustomerId
