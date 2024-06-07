@@ -7,34 +7,33 @@ servers:
 paths:
   /customers/{customerId}:
     parameters:
-      - name: customerId
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
-      - name: detail
-        in: query
-        required: true
-        schema:
-          type: string
-          enum:
-            - full
-            - summary
+    - name: customerId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: detail
+      in: query
+      required: true
+      schema:
+        type: string
+        enum:
+        - full
+        - summary
     get:
       operationId: getCustomerById
       description: Gets a customer by ID.
-
       responses:
-        '200':
+        "200":
           description: Customer detail response
           content:
             application/json:
               schema:
                 required:
-                  - id
-                  - firstName
-                  - lastName
+                - id
+                - firstName
+                - lastName
                 properties:
                   id:
                     type: string
@@ -43,7 +42,6 @@ paths:
                     type: string
                   lastName:
                     type: string
-
               examples:
                 example-one:
                   x-parameter-values:
@@ -55,7 +53,7 @@ paths:
                     firstName: Tom
                     lastName: Akehurst
     put:
-      description: Put customers by customerId.
+      description: Updates a customer by customerId.
       operationId: putCustomersByCustomerId
       requestBody:
         content:
