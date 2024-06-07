@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 93d932a2-03f5-4430-9ef4-f6ff93b7b807
 management:
-  docChecksum: 2249910a5f82cd7fd8ff30bd680f52e0
+  docChecksum: 53daec18b72993ff163eec76398c4fcc
   docVersion: 1.0.0
-  speakeasyVersion: 1.291.0
-  generationVersion: 2.332.4
-  releaseVersion: 0.0.2
-  configChecksum: 0e81bd31eb9eac28d5dfa27b8d154550
+  speakeasyVersion: 1.300.1
+  generationVersion: 2.339.1
+  releaseVersion: 0.1.0
+  configChecksum: 5cba4bf511f295904b4580ee12b669a1
   repoURL: https://github.com/wiremock-inc/api-portals-demo.git
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.19.7
+    core: 3.22.0
     flattening: 2.81.1
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
@@ -37,6 +37,10 @@ generatedFiles:
   - src/main/java/io/wiremock/demos/simple_payments_sdk/utils/BigDecimalString.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/utils/BigIntegerString.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/utils/Deserializers.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/utils/EventStream.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/utils/EventStreamLineReader.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/utils/EventStreamMessage.java
+  - src/main/java/io/wiremock/demos/simple_payments_sdk/utils/EventStreamReader.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/utils/FormMetadata.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/utils/HTTPClient.java
   - src/main/java/io/wiremock/demos/simple_payments_sdk/utils/HTTPRequest.java

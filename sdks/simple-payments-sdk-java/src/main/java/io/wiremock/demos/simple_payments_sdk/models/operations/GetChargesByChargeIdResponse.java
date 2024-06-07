@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetChargesByChargeIdResponse implements io.wiremock.demos.simple_payments_sdk.utils.Response {
 
     /**

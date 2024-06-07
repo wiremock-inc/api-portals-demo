@@ -228,8 +228,7 @@ public class SimplePaymentsSDK implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.wiremock.demos.simple_payments_sdk.models.operations.GetCustomerByIdResponseBody _out = _mapper.readValue(
+                io.wiremock.demos.simple_payments_sdk.models.operations.GetCustomerByIdResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.wiremock.demos.simple_payments_sdk.models.operations.GetCustomerByIdResponseBody>() {});
                 _res.withObject(java.util.Optional.ofNullable(_out));
@@ -258,7 +257,7 @@ public class SimplePaymentsSDK implements
     }
 
     /**
-     * Put customers by customerId.
+     * Updates a customer by customerId.
      * @return The call builder
      */
     public io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdRequestBuilder putCustomersByCustomerId() {
@@ -266,7 +265,7 @@ public class SimplePaymentsSDK implements
     }
 
     /**
-     * Put customers by customerId.
+     * Updates a customer by customerId.
      * @param customerId
      * @param detail
      * @param requestBody
@@ -352,8 +351,7 @@ public class SimplePaymentsSDK implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdResponseBody _out = _mapper.readValue(
+                io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.wiremock.demos.simple_payments_sdk.models.operations.PutCustomersByCustomerIdResponseBody>() {});
                 _res.withObject(java.util.Optional.ofNullable(_out));
@@ -457,8 +455,7 @@ public class SimplePaymentsSDK implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.wiremock.demos.simple_payments_sdk.models.operations.PostChargesResponseBody _out = _mapper.readValue(
+                io.wiremock.demos.simple_payments_sdk.models.operations.PostChargesResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.wiremock.demos.simple_payments_sdk.models.operations.PostChargesResponseBody>() {});
                 _res.withObject(java.util.Optional.ofNullable(_out));
@@ -562,8 +559,7 @@ public class SimplePaymentsSDK implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdResponseBody _out = _mapper.readValue(
+                io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.wiremock.demos.simple_payments_sdk.models.operations.GetChargesByChargeIdResponseBody>() {});
                 _res.withObject(java.util.Optional.ofNullable(_out));

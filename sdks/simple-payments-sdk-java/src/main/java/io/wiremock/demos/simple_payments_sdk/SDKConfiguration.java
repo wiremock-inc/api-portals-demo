@@ -21,9 +21,9 @@ class SDKConfiguration {
     public int serverIdx = 0;
     public String language = "java";
     public String openapiDocVersion = "1.0.0";
-    public String sdkVersion = "0.0.2";
-    public String genVersion = "2.332.4";
-    public String userAgent = "speakeasy-sdk/java 0.0.2 2.332.4 1.0.0 io.wiremock.demos.simple_payments_sdk";
+    public String sdkVersion = "0.1.0";
+    public String genVersion = "2.339.1";
+    public String userAgent = "speakeasy-sdk/java 0.1.0 2.339.1 1.0.0 io.wiremock.demos.simple_payments_sdk";
 
     private io.wiremock.demos.simple_payments_sdk.utils.Hooks _hooks = new io.wiremock.demos.simple_payments_sdk.utils.Hooks();
 

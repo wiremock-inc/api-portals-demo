@@ -12,8 +12,9 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 java:
-  version: 0.0.2
+  version: 0.1.0
   additionalDependencies: []
+  additionalPlugins: []
   artifactID: simple-payments-sdk
   clientServerStatusCodesAsErrors: true
   companyEmail: info@mycompany.com

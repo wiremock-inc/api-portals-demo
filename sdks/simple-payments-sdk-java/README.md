@@ -25,7 +25,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'io.wiremock.demos.simple_payments_sdk:openapi:0.0.2'
+implementation 'io.wiremock.demos.simple_payments_sdk:openapi:0.1.0'
 ```
 
 Maven:
@@ -33,7 +33,7 @@ Maven:
 <dependency>
     <groupId>io.wiremock.demos.simple_payments_sdk</groupId>
     <artifactId>openapi</artifactId>
-    <version>0.0.2</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 
@@ -63,6 +63,8 @@ package hello.world;
 import io.wiremock.demos.simple_payments_sdk.SimplePaymentsSDK;
 import io.wiremock.demos.simple_payments_sdk.models.components.*;
 import io.wiremock.demos.simple_payments_sdk.models.operations.*;
+import io.wiremock.demos.simple_payments_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -104,7 +106,7 @@ public class Application {
 ### [SimplePaymentsSDK](docs/sdks/simplepaymentssdk/README.md)
 
 * [getCustomerById](docs/sdks/simplepaymentssdk/README.md#getcustomerbyid) - Gets a customer by ID.
-* [putCustomersByCustomerId](docs/sdks/simplepaymentssdk/README.md#putcustomersbycustomerid) - Put customers by customerId.
+* [putCustomersByCustomerId](docs/sdks/simplepaymentssdk/README.md#putcustomersbycustomerid) - Updates a customer by customerId.
 * [postCharges](docs/sdks/simplepaymentssdk/README.md#postcharges) - Create a new charge.
 * [getChargesByChargeId](docs/sdks/simplepaymentssdk/README.md#getchargesbychargeid) - Get charges by chargeId.
 <!-- End Available Resources and Operations [operations] -->
@@ -126,6 +128,8 @@ package hello.world;
 import io.wiremock.demos.simple_payments_sdk.SimplePaymentsSDK;
 import io.wiremock.demos.simple_payments_sdk.models.components.*;
 import io.wiremock.demos.simple_payments_sdk.models.operations.*;
+import io.wiremock.demos.simple_payments_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -180,6 +184,8 @@ package hello.world;
 import io.wiremock.demos.simple_payments_sdk.SimplePaymentsSDK;
 import io.wiremock.demos.simple_payments_sdk.models.components.*;
 import io.wiremock.demos.simple_payments_sdk.models.operations.*;
+import io.wiremock.demos.simple_payments_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -225,6 +231,8 @@ package hello.world;
 import io.wiremock.demos.simple_payments_sdk.SimplePaymentsSDK;
 import io.wiremock.demos.simple_payments_sdk.models.components.*;
 import io.wiremock.demos.simple_payments_sdk.models.operations.*;
+import io.wiremock.demos.simple_payments_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;

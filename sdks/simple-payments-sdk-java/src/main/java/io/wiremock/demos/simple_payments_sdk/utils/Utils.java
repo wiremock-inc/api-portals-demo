@@ -5,12 +5,17 @@
 package io.wiremock.demos.simple_payments_sdk.utils;
 
 import java.io.InputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.URI;
 import java.net.URLEncoder;
+import java.net.http.HttpClient.Version;
+import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -32,6 +37,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import javax.net.ssl.SSLSession;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.http.NameValuePair;
 
@@ -40,7 +47,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.IntNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
 public final class Utils {
@@ -861,4 +872,127 @@ public final class Utils {
         );
         return builder;
     }
+    
+    // convenience method so that classes don't need to import a possibly colliding name of JSON 
+    // (Utils is a very common import)
+    public static ObjectMapper mapper() {
+        return JSON.getMapper();
+    }
+    
+    public static <T> T asType(EventStreamMessage x, ObjectMapper mapper, TypeReference<T> typeReference) {
+        try {
+            try {
+                String json = json(x, mapper, false);
+                return mapper.readValue(json, typeReference);
+            } catch (JsonProcessingException e) {
+                // retry with the assumption that data field is plain text
+                String json = json(x, mapper, true);
+                return mapper.readValue(json, typeReference);
+            }
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String json(EventStreamMessage m, ObjectMapper mapper, boolean dataIsPlainText)
+            throws JsonProcessingException {
+        ObjectNode node = mapper.createObjectNode();
+        m.event().ifPresent(value -> node.set("event", new TextNode(value)));
+        m.id().ifPresent(value -> node.set("id", new TextNode(value)));
+        m.retryMs().ifPresent(value -> node.set("retry", new IntNode(value)));
+        // data is always present (but may be an empty string)
+        if (dataIsPlainText || m.data().trim().isEmpty()) {
+            node.set("data", new TextNode(m.data()));
+        } else {
+            JsonNode tree = mapper.readTree(m.data());
+            node.set("data", tree);
+        }
+        return mapper.writeValueAsString(node);
+    }
+    
+    /**
+     * Fully reads the body of the given response and caches it in memory. The
+     * returned response has utility methods to view the body
+     * ({@code bodyAsUtf8(), bodyAsBytes()} and the {@code body()} method can be
+     * called multiple times, each returning a fresh {@link InputStream} that will
+     * read from the cached byte array.
+     * 
+     * <p>
+     * This method is most likely to be used in a diagnostic/logging situtation so
+     * that the contents of a response can be viewed without affecting processing.
+     * Using this method with a very large body may be problematic in
+     * terms of memory use.
+     * 
+     * @param response response to cache
+     * @return response with a cached body
+     * @throws IOException
+     */
+    public static HttpResponseCached cache(HttpResponse<InputStream> response) throws IOException {
+        return new HttpResponseCached(response);
+    }
+    
+    public static final class HttpResponseCached implements HttpResponse<InputStream> {
+
+        private final HttpResponse<InputStream> response;
+        private final byte[] bytes;
+        
+        public HttpResponseCached(HttpResponse<InputStream> response) throws IOException {
+            this.response = response;
+            this.bytes = Utils.toByteArrayAndClose(response.body());
+        }
+
+        public String bodyAsUtf8() {
+            return new String(bytes, StandardCharsets.UTF_8);
+        }
+        
+        public byte[] bodyAsBytes() {
+            return bytes;
+        }
+
+        @Override
+        public int statusCode() {
+            return response.statusCode();
+        }
+
+        @Override
+        public HttpRequest request() {
+            return response.request();
+        }
+
+        @Override
+        public Optional<HttpResponse<InputStream>> previousResponse() {
+            return response.previousResponse();
+        }
+        
+        @Override
+        public HttpHeaders headers() {
+            return response.headers();
+        }
+
+        @Override
+        public InputStream body() {
+            return new ByteArrayInputStream(bytes);
+        }
+
+        @Override
+        public Optional<SSLSession> sslSession() {
+            return response.sslSession();
+        }
+
+        @Override
+        public URI uri() {
+            return response.uri();
+        }
+
+        @Override
+        public Version version() {
+            return response.version();
+        }
+        
+        @Override
+        public String toString() {
+            return response.toString();
+        }
+    }
+    
 }

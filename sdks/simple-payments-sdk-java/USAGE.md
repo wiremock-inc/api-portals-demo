@@ -5,6 +5,8 @@ package hello.world;
 import io.wiremock.demos.simple_payments_sdk.SimplePaymentsSDK;
 import io.wiremock.demos.simple_payments_sdk.models.components.*;
 import io.wiremock.demos.simple_payments_sdk.models.operations.*;
+import io.wiremock.demos.simple_payments_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;

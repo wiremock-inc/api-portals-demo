@@ -1,6 +1,19 @@
-speakeasyVersion: 1.291.0
-sources: {}
-targets: {}
+speakeasyVersion: 1.300.1
+sources:
+    simple-payments-api:
+        sourceNamespace: simple-payments-api
+        sourceRevisionDigest: sha256:c98f42395ed01dc3363c63b8998a77fe9d2c75e8a3740e3b65f506ef7b14ffcd
+        sourceBlobDigest: sha256:4465063661bf3f0509c40704b6fdf01b60b1d161562248d74c72ddaecbc324ee
+        tags:
+            - latest
+            - main
+targets:
+    my-first-target:
+        source: simple-payments-api
+        sourceNamespace: simple-payments-api
+        sourceRevisionDigest: sha256:c98f42395ed01dc3363c63b8998a77fe9d2c75e8a3740e3b65f506ef7b14ffcd
+        sourceBlobDigest: sha256:4465063661bf3f0509c40704b6fdf01b60b1d161562248d74c72ddaecbc324ee
+        outLocation: /github/workspace/repo/sdks/simple-payments-sdk-java
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -8,6 +21,8 @@ workflow:
         simple-payments-api:
             inputs:
                 - location: ../../simple-payments/openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/wiremock/wiremock/simple-payments-api
     targets:
         my-first-target:
             target: java

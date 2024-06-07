@@ -4,6 +4,8 @@ sources:
     simple-payments-api:
         inputs:
             - location: ../../simple-payments/openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/wiremock/wiremock/simple-payments-api
 targets:
     my-first-target:
         target: java

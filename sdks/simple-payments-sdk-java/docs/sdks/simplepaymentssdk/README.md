@@ -6,7 +6,7 @@
 ### Available Operations
 
 * [getCustomerById](#getcustomerbyid) - Gets a customer by ID.
-* [putCustomersByCustomerId](#putcustomersbycustomerid) - Put customers by customerId.
+* [putCustomersByCustomerId](#putcustomersbycustomerid) - Updates a customer by customerId.
 * [postCharges](#postcharges) - Create a new charge.
 * [getChargesByChargeId](#getchargesbychargeid) - Get charges by chargeId.
 
@@ -22,6 +22,8 @@ package hello.world;
 import io.wiremock.demos.simple_payments_sdk.SimplePaymentsSDK;
 import io.wiremock.demos.simple_payments_sdk.models.components.*;
 import io.wiremock.demos.simple_payments_sdk.models.operations.*;
+import io.wiremock.demos.simple_payments_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -75,7 +77,7 @@ public class Application {
 
 ## putCustomersByCustomerId
 
-Put customers by customerId.
+Updates a customer by customerId.
 
 ### Example Usage
 
@@ -85,6 +87,8 @@ package hello.world;
 import io.wiremock.demos.simple_payments_sdk.SimplePaymentsSDK;
 import io.wiremock.demos.simple_payments_sdk.models.components.*;
 import io.wiremock.demos.simple_payments_sdk.models.operations.*;
+import io.wiremock.demos.simple_payments_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -153,6 +157,8 @@ package hello.world;
 import io.wiremock.demos.simple_payments_sdk.SimplePaymentsSDK;
 import io.wiremock.demos.simple_payments_sdk.models.components.*;
 import io.wiremock.demos.simple_payments_sdk.models.operations.*;
+import io.wiremock.demos.simple_payments_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -220,6 +226,8 @@ package hello.world;
 import io.wiremock.demos.simple_payments_sdk.SimplePaymentsSDK;
 import io.wiremock.demos.simple_payments_sdk.models.components.*;
 import io.wiremock.demos.simple_payments_sdk.models.operations.*;
+import io.wiremock.demos.simple_payments_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
