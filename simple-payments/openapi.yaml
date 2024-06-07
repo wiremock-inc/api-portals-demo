@@ -84,26 +84,31 @@ paths:
             schema:
               required:
               - departmentCode
+              - email
               - firstName
               - lastName
               type: object
               properties:
                 firstName:
                   type: string
-                  example: Verdie
+                  example: Willette
                 lastName:
                   type: string
-                  example: Stracke
+                  example: Hauck
                 departmentCode:
                   type: string
-                  example: om323bmz63886uzazowpy6v06kjkycdl6fy1a7gq0x9jxwcneo6tp18k3g7ri041ktb9v7h80atcy3oc0ej9raeufb0n2fmlulyq0qkzd604ijrfos9lplwy3fuwip8z2e3ljtytwjyucja2wtqom2ykrbpdrx51
+                  example: ulhmlhnrsrf4xws25hdqdf1vfmlubgrlexkiuovakh1ijrh6uimpi1vdqabw46u51gk90jxd3fx4rafbs0x5qwb6mrlc0y74ap87qsyhi5frlwc5t1zzkcj
+                email:
+                  type: string
+                  example: kv2c1mo6fuaer443qc5icj7tthircz
             examples:
               Update customer:
                 value: |-
                   {
-                    "firstName" : "Isaiah",
-                    "lastName" : "Kilback",
-                    "departmentCode" : "pi32kv8x080hmgra867aygf8f1t5olegwiyxwdhnlva48w7ue6bbhei9gvkw2g1x7k4tnh4gryfo7ireebr7l3zz3f4bfuml41"
+                    "firstName" : "Elias",
+                    "lastName" : "Deckow",
+                    "departmentCode" : "rm6jelbfoaqrf163fgme3ob6fxqt4d1e7lakcc7vzh2pes193obkm4lwmobuk72r",
+                    "email" : "e3wrho3th7eg4u5pgeib0wyjpyj0nstcigjj82tasutxaofq2o5kfngfx312isxdbp87vgwjmmamwndz4m137uguirvw98c1yjjme83ozb34g4aypxkwen3r3b7sroe4zxcqi022m3ynokbfuvbz0cgaeqr3bk"
                   }
         required: true
       responses:
@@ -113,6 +118,7 @@ paths:
             application/json:
               schema:
                 required:
+                - email
                 - firstName
                 - id
                 - lastName
@@ -127,14 +133,18 @@ paths:
                   lastName:
                     type: string
                     example: Akehurst
-                x-wiremock-hash: -1986720674
+                  email:
+                    type: string
+                    example: tom@wiremock.org
+                x-wiremock-hash: 1166170928
               examples:
                 Update customer:
                   value: |
                     {
                       "id": "1c777b16-2a24-47c1-8b24-a38cf96c66e0",
                       "firstName": "Tom",
-                      "lastName": "Akehurst"
+                      "lastName": "Akehurst",
+                      "email": "tom@wiremock.org"
                     }
   /charges:
     post:
