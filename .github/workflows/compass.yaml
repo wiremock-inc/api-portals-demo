@@ -1,0 +1,16 @@
+name: Atlassian Compass publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  compass:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo 📚
+        uses: actions/checkout@v3
+
+      - name: Push Simple Payments OpenAPI spec to the Compass component 🚀
+        run: curl -X PUT https://wiremock.atlassian.net/gateway/api/compass/v1/component/091d0b6d-7b9c-4806-a6c2-23648e66af75/app/564688a0-afba-45d3-b882-dbf6edbe6066/attachment/swagger-json -F file=@simple-payments/openapi.yaml --user "$ATLASSIAN_USERNAME:$ATLASSIAN_API_TOKEN"
