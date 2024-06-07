@@ -6,24 +6,28 @@ servers:
 - url: https://simple-payments.wiremockapi.cloud
 paths:
   /customers/{customerId}:
-    parameters:
-    - name: customerId
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    - name: detail
-      in: query
-      required: true
-      schema:
-        type: string
-        enum:
-        - full
-        - summary
     get:
-      operationId: getCustomerById
       description: Gets a customer by ID.
+      operationId: getCustomerById
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+      - name: detail
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - full
+          - summary
       responses:
         "200":
           description: Customer detail response
@@ -31,8 +35,8 @@ paths:
             application/json:
               schema:
                 required:
-                - id
                 - firstName
+                - id
                 - lastName
                 properties:
                   id:
@@ -44,38 +48,62 @@ paths:
                     type: string
               examples:
                 example-one:
-                  x-parameter-values:
-                    id: 5931ed73-dcd4-4e24-ad24-975ac288fa7f
-                    detail: full
                   summary: First customer example
                   value:
                     id: 5931ed73-dcd4-4e24-ad24-975ac288fa7f
                     firstName: Tom
                     lastName: Akehurst
+                  x-parameter-values:
+                    id: 5931ed73-dcd4-4e24-ad24-975ac288fa7f
+                    detail: full
     put:
       description: Updates customers by customerId.
       operationId: putCustomersByCustomerId
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+      - name: detail
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - full
+          - summary
       requestBody:
         content:
           application/json:
             schema:
               required:
+              - departmentCode
               - firstName
               - lastName
               type: object
               properties:
                 firstName:
                   type: string
-                  example: Marc
+                  example: Verdie
                 lastName:
                   type: string
-                  example: Treutel
+                  example: Stracke
+                departmentCode:
+                  type: string
+                  example: om323bmz63886uzazowpy6v06kjkycdl6fy1a7gq0x9jxwcneo6tp18k3g7ri041ktb9v7h80atcy3oc0ej9raeufb0n2fmlulyq0qkzd604ijrfos9lplwy3fuwip8z2e3ljtytwjyucja2wtqom2ykrbpdrx51
             examples:
               Update customer:
                 value: |-
                   {
-                    "firstName" : "Brenda",
-                    "lastName" : "Schmitt"
+                    "firstName" : "Isaiah",
+                    "lastName" : "Kilback",
+                    "departmentCode" : "pi32kv8x080hmgra867aygf8f1t5olegwiyxwdhnlva48w7ue6bbhei9gvkw2g1x7k4tnh4gryfo7ireebr7l3zz3f4bfuml41"
                   }
         required: true
       responses:
