@@ -1,6 +1,7 @@
 openapi: 3.0.1
 info:
   title: Simple demo payments API
+  description: A simple payments API supporting charges and customers
   version: 1.0.0
 servers:
 - url: https://simple-payments.wiremockapi.cloud
