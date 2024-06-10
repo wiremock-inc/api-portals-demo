@@ -94,6 +94,7 @@ paths:
           application/json:
             schema:
               required:
+              - address
               - departmentCode
               - email
               - firstName
@@ -102,24 +103,28 @@ paths:
               properties:
                 firstName:
                   type: string
-                  example: Willette
+                  example: Darrel
                 lastName:
                   type: string
-                  example: Hauck
+                  example: Lehner
                 departmentCode:
                   type: string
-                  example: ulhmlhnrsrf4xws25hdqdf1vfmlubgrlexkiuovakh1ijrh6uimpi1vdqabw46u51gk90jxd3fx4rafbs0x5qwb6mrlc0y74ap87qsyhi5frlwc5t1zzkcj
+                  example: 1466q9t43ypj8klvwdcg2g07qpfx80cjtelvcje11hrmot1x30xb5k7tatpqklxknr7pmww16zhdljcow8qkpyx2ta9t20inhvoafk4z99fiic
                 email:
                   type: string
-                  example: kv2c1mo6fuaer443qc5icj7tthircz
+                  example: a6u42acokwur9fu0xlbdctv6wderr541hyupvzy4guhzxwiehv6h65
+                address:
+                  type: string
+                  example: 00eyi3ht6zew5rk490iyfgy78dizwsazk22pyhfhqqjer0e7pu8c3d9c2frg9ofgfr3y7fcc654etprt5k0pjb0qera50iptybnkbzvyoine52svkaix07fod8lc335kxtgc9zoyp4isk6o4shyyg7r6brq7o9i4fqg69pk
             examples:
               Update customer:
                 value: |-
                   {
-                    "firstName" : "Elias",
-                    "lastName" : "Deckow",
-                    "departmentCode" : "rm6jelbfoaqrf163fgme3ob6fxqt4d1e7lakcc7vzh2pes193obkm4lwmobuk72r",
-                    "email" : "e3wrho3th7eg4u5pgeib0wyjpyj0nstcigjj82tasutxaofq2o5kfngfx312isxdbp87vgwjmmamwndz4m137uguirvw98c1yjjme83ozb34g4aypxkwen3r3b7sroe4zxcqi022m3ynokbfuvbz0cgaeqr3bk"
+                    "firstName" : "Teodora",
+                    "lastName" : "McLaughlin",
+                    "address" : "jcba43g5w6nf0ayb4o1vgfvyeym4dcd0dy6huk5cod4aoqfi8uva8r2zgf6r4ycnktt6utv9tel5eedz6yw2ss94r0y7r9irsnsyro7jp0c0jmtykovfbmewtwp17zlq5a8caq6y7bkmbuuj15g4y9x3bc7toyz6rqnpm7niz0eohhy7xcvudpc",
+                    "departmentCode" : "mbxlz5k7iq2f3ynyhljyjcimg0kvm4bw4l6ggti4g60zs9d3asxr3cr21r743x1m8aqocumk15demqow3nzjsq4z8cr0yv5br5818kpr7g9e46mx9ndm3k9pm6odtljhuz0rvu6tl2ksvrwetv43gtwwhhuppqemfjqx6eriborjjee3x87vug3pmmq9swr9k1v",
+                    "email" : "6gb37unkumu40msof0pjar66yq7cf"
                   }
         required: true
       responses:
@@ -129,7 +134,6 @@ paths:
             application/json:
               schema:
                 required:
-                - email
                 - firstName
                 - id
                 - lastName
@@ -147,7 +151,7 @@ paths:
                   email:
                     type: string
                     example: tom@wiremock.org
-                x-wiremock-hash: 1166170928
+                x-wiremock-hash: 1727538486
               examples:
                 Update customer:
                   value: |
