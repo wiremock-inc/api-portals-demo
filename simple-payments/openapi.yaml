@@ -95,6 +95,7 @@ paths:
           application/json:
             schema:
               required:
+              - address
               - departmentCode
               - email
               - firstName
@@ -103,24 +104,28 @@ paths:
               properties:
                 firstName:
                   type: string
-                  example: Verdie
+                  example: Willette
                 lastName:
                   type: string
-                  example: Stracke
+                  example: Hauck
                 departmentCode:
                   type: string
-                  example: ztpo15lmhmye5pdlvc0s26wzodk5ry3xp6e8b11w25kaqww9h5gq95hbqf9g1n3a9dx9bo0sv
+                  example: zwj
                 email:
                   type: string
-                  example: 7wqp5o4
+                  example: treb0oiqz3253s654yq3xx2pjxlbdmjs4scxrji034j9dmwerguisw7h26xm2zyiv1glen9vy6zxnoptege8n78wbaez2u3nkxd3sq56dtyrx5qmtain8vhp2
+                address:
+                  type: string
+                  example: 5ywgj9tz6lydy3kwyg8nwr3il5d8rfb90byy8cir4mkjtznv9561gg7
             examples:
               Update customer:
                 value: |-
                   {
-                    "firstName" : "Isaiah",
-                    "lastName" : "Kilback",
-                    "departmentCode" : "4544c72bkv1njpex79u45uxjyzof3tqad5da1mt92yjzt3giih9eo9rmjxot7lou6e7g71bmade082vq7yeaeujxb4zvjpqosio",
-                    "email" : "xe8lzybnnixpe99fl1fnnlbp61mrki3ren4p6444xxhwbnjuzj3540yi6c2v8qvkevg2"
+                    "firstName" : "Elias",
+                    "lastName" : "Deckow",
+                    "address" : "rwwtb6h3j8dzv9n513mod6f8tqegrxy19v5yygz8foam59mje9v43lcu078w8loa9dne0myc2zxd2m8wi6rmh7wwgpebqwbsbj3acns90s6ha48cjv7l8evut301aeubecc2n9v1xouaqekvfjq60ffgvpup73ezgxm5wjcrlygjtu6m3fwcoayju8p8",
+                    "departmentCode" : "yf702y72gwi3qxtrjl4d4iqab8o2z3jok7xlg9k542vo75agsapce28jcf6r7gwz5ne4sf5vw40uup8iqtq477p77t69215cp5hl48zwb6cauidnscwoz2e1b0ztdnmyqjepdh3jdwnugco0alasuetg46h2",
+                    "email" : "w0ox0756fhklml2voto44ei3pv50zjjuyn4utw0tpuwsdhfj8df9xt4ieylf8jt635p3n32ozjhdd9w3ftnzhlf7xecd"
                   }
         required: true
       responses:
