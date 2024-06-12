@@ -302,3 +302,47 @@ paths:
                         "created": "2023-09-03T10:31:22Z",
                         "status": "pending"
                     }
+  /invoices/{invoiceId}:
+    get:
+      description: Get invoices by invoiceId.
+      operationId: getInvoicesByInvoiceId
+      parameters:
+      - name: invoiceId
+        in: path
+        required: true
+      responses:
+        "200":
+          description: Get invoice by ID
+          content:
+            application/json:
+              schema:
+                required:
+                - charge
+                - currency
+                - id
+                - totalAmount
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 80b4ee05-ff3e-4278-a98f-35f397657212
+                  totalAmount:
+                    type: integer
+                    format: int32
+                    example: 350
+                  currency:
+                    type: string
+                    example: gbp
+                  charge:
+                    type: string
+                    example: /charges/9b6b418a-0b59-486c-a4a3-cd0f1cdbf0b3
+                x-wiremock-hash: -1535570859
+              examples:
+                Get invoice by ID:
+                  value: |-
+                    {
+                        "id": "80b4ee05-ff3e-4278-a98f-35f397657212",
+                        "totalAmount": 350,
+                        "currency": "gbp",
+                        "charge": "/charges/9b6b418a-0b59-486c-a4a3-cd0f1cdbf0b3"
+                    }
