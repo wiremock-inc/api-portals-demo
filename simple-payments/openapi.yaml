@@ -242,66 +242,6 @@ paths:
                         "created": "2023-09-03T10:31:22Z",
                         "status": "pending"
                     }
-  /charges/{chargeId}:
-    get:
-      description: Get charges by chargeId.
-      operationId: getChargesByChargeId
-      parameters:
-      - name: chargeId
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uuid
-        example: 1c777b16-2a24-47c1-8b24-a38cf96c66e0
-      responses:
-        "200":
-          description: Get charges by chargeId. - Get charge by ID
-          content:
-            application/json:
-              schema:
-                required:
-                - amount
-                - created
-                - currency
-                - customer
-                - id
-                - status
-                type: object
-                properties:
-                  id:
-                    type: string
-                    example: 9b6b418a-0b59-486c-a4a3-cd0f1cdbf0b3
-                  amount:
-                    type: integer
-                    format: int32
-                    example: 350
-                  currency:
-                    type: string
-                    example: gbp
-                  customer:
-                    type: string
-                    example: /customers/5931ed73-dcd4-4e24-ad24-975ac288fa7f
-                  created:
-                    type: string
-                    example: 2023-09-03T10:31:22Z
-                  status:
-                    type: string
-                    example: pending
-                x-wiremock-hash: 366003811
-              examples:
-                Get charge by ID:
-                  value: |-
-                    {
-                        "id": "9b6b418a-0b59-486c-a4a3-cd0f1cdbf0b3",
-                        "amount": 350,
-                        "currency": "gbp",
-                        "customer": "/customers/5931ed73-dcd4-4e24-ad24-975ac288fa7f",
-                        "created": "2023-09-03T10:31:22Z",
-                        "status": "pending"
-                    }
   /invoices/{invoiceId}:
     get:
       description: Get an invoice by invoice ID.
