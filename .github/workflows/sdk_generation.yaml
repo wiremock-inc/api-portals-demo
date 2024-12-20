@@ -17,6 +17,7 @@ on:
   #   - cron: 0 0 * * *
 jobs:
   generate-sdks:
+    if: false
     name: Generate SDKs
     runs-on: ubuntu-latest
     steps:

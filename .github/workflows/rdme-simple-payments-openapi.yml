@@ -12,6 +12,7 @@ on:
 
 jobs:
   rdme-openapi:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo 📚
